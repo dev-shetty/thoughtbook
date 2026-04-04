@@ -3,6 +3,9 @@ import { Button, H1, XStack } from "tamagui"
 
 import { useNavbar } from "@/components/navbar/hookes/use-navbar"
 import { IconSymbol } from "@/components/ui/icon-symbol"
+import { NAVBAR_BOTTOM_SPACING, NAVBAR_TOP_SPACING } from "@/components/navbar/constants"
+
+
 
 export function Navbar() {
   const { top } = useSafeAreaInsets()
@@ -10,10 +13,10 @@ export function Navbar() {
 
   return (
     <XStack
-      paddingTop={top + 8}
+      paddingTop={top + NAVBAR_TOP_SPACING}
       paddingHorizontal="$4"
       backgroundColor="$background"
-      paddingBottom="$4"
+      paddingBottom={NAVBAR_BOTTOM_SPACING}
       alignItems="center"
       gap="$2"
     >

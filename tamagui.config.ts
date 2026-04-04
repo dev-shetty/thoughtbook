@@ -64,6 +64,7 @@ const interFont = createFont({
 // ─── Color Tokens ──────────────────────────────────────────────────────────────
 
 export const surfaceColor = "hsla(30, 11%, 6%, 1)"
+export const onSurfaceVariantColor = "hsla(34, 13%, 67%, 1)"
 
 const tokens = createTokens({
     color: {
@@ -93,7 +94,7 @@ const tokens = createTokens({
         // Full-presence text — headings, entry body
         onSurface: "hsla(37, 38%, 88%, 1)",
         // Supporting text — second read
-        onSurfaceVariant: "hsla(34, 13%, 67%, 1)",
+        onSurfaceVariant: onSurfaceVariantColor,
         // Ghost text — timestamps, meta, encrypted label
         onTertiaryFixedVariant: "hsla(32, 6%, 41%, 1)",
 
