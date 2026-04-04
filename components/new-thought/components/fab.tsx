@@ -1,12 +1,17 @@
+import { NEW_THOUGHT_STATES } from "@/components/new-thought/constants"
+import { useNewButtonState } from "@/components/new-thought/hooks/use-new-button-state"
 import { IconSymbol } from "@/components/ui/icon-symbol"
 import { FAB_GAP, TAB_BAR_BASE } from "@/constants"
+import { useRouter } from "expo-router"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Button } from "tamagui"
 
-/** Default tab bar content height (safe area is added via insets). */
-
 export function NewThoughtButton() {
   const insets = useSafeAreaInsets()
+  const router = useRouter()
+  const newButtonState = useNewButtonState()
+
+  if (newButtonState === NEW_THOUGHT_STATES.HIDDEN) return null
 
   return (
     <Button
@@ -23,6 +28,7 @@ export function NewThoughtButton() {
       shadowRadius={14}
       shadowOffset={{ width: 0, height: 6 }}
       pressStyle={{ opacity: 0.98 }}
+      onPress={() => router.push("/new")}
     >
       <IconSymbol name="plus" size={24} color="white" />
     </Button>

@@ -3,8 +3,7 @@ import React from "react"
 
 import { HapticTab } from "@/components/haptic-tab"
 import { Navbar } from "@/components/navbar"
-import { NewThoughtButton } from "@/components/new-thought-btn"
-import { IconSymbol } from "@/components/ui/icon-symbol"
+import { NewThoughtButton } from "@/components/new-thought/components/fab"
 import { Colors } from "@/constants/theme"
 import { useColorScheme } from "@/hooks/use-color-scheme"
 import { YStack } from "tamagui"
@@ -30,10 +29,15 @@ export default function TabLayout() {
           <Tabs.Screen
             name="index"
             options={{
-              title: "Home",
-              tabBarIcon: ({ color }) => (
-                <IconSymbol size={28} name="house.fill" color={color} />
-              ),
+              title: "Feed",
+              href: null,
+            }}
+          />
+          <Tabs.Screen
+            name="new"
+            options={{
+              title: "New Thought",
+              href: null,
             }}
           />
         </Tabs>
