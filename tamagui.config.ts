@@ -63,11 +63,13 @@ const interFont = createFont({
 
 // ─── Color Tokens ──────────────────────────────────────────────────────────────
 
+export const surfaceColor = "hsla(30, 11%, 6%, 1)"
+
 const tokens = createTokens({
     color: {
         // ── Surfaces (stacked paper sheets) ──────────────────────────────────────
         // "The desk on which the notebook sits"
-        surface: "hsla(30, 11%, 6%, 1)",
+        surface: surfaceColor,
         // Slightly lifted — "between desk and page"
         surfaceContainerLow: "hsla(32, 12%, 8%, 1)",
         // "The active writing area / the page"
@@ -163,6 +165,7 @@ const tokens = createTokens({
 
 // ─── Theme ─────────────────────────────────────────────────────────────────────
 // Single dark theme — "dark mode only, the Nocturnal Manuscript"
+
 
 const nocturneTheme = {
     background: tokens.color.surface,

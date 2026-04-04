@@ -6,7 +6,7 @@ export function Navbar() {
 
   return (
     <XStack
-      paddingTop={top}
+      paddingTop={top + 8}
       paddingHorizontal="$4"
       backgroundColor="$background"
       paddingBottom="$4"
