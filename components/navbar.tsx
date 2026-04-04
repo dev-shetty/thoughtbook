@@ -9,6 +9,7 @@ export function Navbar() {
       paddingTop={top}
       paddingHorizontal="$4"
       backgroundColor="$background"
+      paddingBottom="$4"
     >
       <H1 fontFamily="$heading" fontSize="$6" color="$color">
         Thoughtbook

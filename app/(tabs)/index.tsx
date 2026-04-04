@@ -1,11 +1,13 @@
-import { Text, YStack } from "tamagui"
+import { Reflections } from "@/components/reflections"
+import { FILLER_DATA } from "@/components/reflections/constants"
+import { ScrollView } from "tamagui"
 
 export default function HomeScreen() {
+  const reflections = FILLER_DATA
+
   return (
-    <YStack backgroundColor="$background" flex={1} padding="$4">
-      <Text fontFamily="$heading" fontSize="$6" color="$color">
-        Hello
-      </Text>
-    </YStack>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Reflections reflections={reflections} />
+    </ScrollView>
   )
 }
