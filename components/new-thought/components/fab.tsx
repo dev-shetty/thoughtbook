@@ -2,14 +2,29 @@ import { NEW_THOUGHT_STATES } from "@/components/new-thought/constants"
 import { useNewButtonState } from "@/components/new-thought/hooks/use-new-button-state"
 import { IconSymbol } from "@/components/ui/icon-symbol"
 import { FAB_GAP, TAB_BAR_BASE } from "@/constants"
+import { $state } from "@/state"
 import { useRouter } from "expo-router"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Button } from "tamagui"
+
 
 export function NewThoughtButton() {
   const insets = useSafeAreaInsets()
   const router = useRouter()
   const newButtonState = useNewButtonState()
+
+  const handlePress = () => {
+    const id = Date.now().toString()
+    const date = new Date().toISOString()
+    $state.thoughts.push({
+      id,
+      date,
+      content: "",
+      badges: [],
+    })
+    $state.currentId.set(id)
+    router.push("/new")
+  }
 
   if (newButtonState === NEW_THOUGHT_STATES.HIDDEN) return null
 
@@ -28,7 +43,7 @@ export function NewThoughtButton() {
       shadowRadius={14}
       shadowOffset={{ width: 0, height: 6 }}
       pressStyle={{ opacity: 0.98 }}
-      onPress={() => router.push("/new")}
+      onPress={handlePress}
     >
       <IconSymbol name="plus" size={24} color="white" />
     </Button>

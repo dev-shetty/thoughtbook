@@ -1,9 +1,9 @@
 import { Reflections } from "@/components/reflections"
-import { FILLER_DATA } from "@/components/reflections/constants"
+import { $state } from "@/state"
 import { ScrollView } from "tamagui"
 
 export default function HomeScreen() {
-  const reflections = FILLER_DATA
+  const reflections = $state.thoughts.get()
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
