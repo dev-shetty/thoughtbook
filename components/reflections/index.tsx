@@ -1,12 +1,9 @@
 import { Reflection } from "@/components/reflections/reflection"
-import { Reflection as ReflectionType } from "@/components/reflections/types"
+import { $state } from "@/state"
+import { For } from "@legendapp/state/react"
 import { YStack } from "tamagui"
 
-interface ReflectionsProps {
-  reflections: ReflectionType[]
-}
-
-export function Reflections({ reflections }: ReflectionsProps) {
+export function Reflections() {
   return (
     <YStack
       backgroundColor="$background"
@@ -16,9 +13,9 @@ export function Reflections({ reflections }: ReflectionsProps) {
       paddingBottom="$8"
       gap="$8"
     >
-      {reflections.map((reflection) => (
-        <Reflection key={reflection.date} reflection={reflection} />
-      ))}
+      <For each={$state.thoughtIds}>
+        {($id) => <Reflection id={$id.get() as string} />}
+      </For>
     </YStack>
   )
 }

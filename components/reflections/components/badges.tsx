@@ -1,11 +1,14 @@
 import { Badge } from "@/components/ui/badge"
+import { $state } from "@/state"
+import { observer } from "@legendapp/state/react"
 import { XStack } from "tamagui"
 
 interface BadgesProps {
-  badges: string[]
+  id: string
 }
 
-export function Badges({ badges }: BadgesProps) {
+export const Badges = observer(function Badges({ id }: BadgesProps) {
+  const badges = $state.thoughtsById[id].badges.get() ?? []
   return (
     <XStack gap="$2">
       {badges.map((badge) => (
@@ -13,4 +16,4 @@ export function Badges({ badges }: BadgesProps) {
       ))}
     </XStack>
   )
-}
+})
