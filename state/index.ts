@@ -1,6 +1,7 @@
-import { FILLER_DATA } from "@/components/reflections/constants"
 import { Reflection } from "@/components/reflections/types"
+import { storage } from "@/state/persist"
 import { observable } from "@legendapp/state"
+import { syncObservable } from "@legendapp/state/sync"
 
 interface AppState {
     thoughtsById: Record<string, Reflection>
@@ -8,19 +9,18 @@ interface AppState {
     currentId: string
 }
 
-const seedById: Record<string, Reflection> = {}
-const seedIds: string[] = []
-for (const r of FILLER_DATA) {
-    seedById[r.id] = r
-    seedIds.push(r.id)
-}
-
 export const $state = observable<AppState>({
-    thoughtsById: seedById,
-    thoughtIds: seedIds,
+    thoughtsById: {},
+    thoughtIds: [],
     currentId: "",
 })
 
+syncObservable($state, {
+    persist: {
+        name: "thoughtbook",
+        plugin: storage,
+    },
+})
 
 export function addThought(): string {
     const id = Date.now().toString()
