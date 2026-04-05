@@ -1,5 +1,5 @@
 import { Reflection } from "@/components/reflections/types"
-import { storage } from "@/state/persist"
+import { getStorage } from "@/state/persist"
 import { observable } from "@legendapp/state"
 import { syncObservable } from "@legendapp/state/sync"
 
@@ -15,12 +15,14 @@ export const $state = observable<AppState>({
     currentId: "",
 })
 
-syncObservable($state, {
-    persist: {
-        name: "thoughtbook",
-        plugin: storage,
-    },
-})
+let _synced = false
+export function initStateSync() {
+    if (_synced) return
+    _synced = true
+    syncObservable($state, {
+        persist: { name: "thoughtbook", plugin: getStorage() },
+    })
+}
 
 export function addThought(): string {
     const id = Date.now().toString()

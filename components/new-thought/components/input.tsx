@@ -19,7 +19,7 @@ export const NewThoughtInput = observer(function NewThoughtInput() {
         placeholder="Let your thoughts flow..."
         flex={1}
         fontSize="$4"
-        autoFocus={true}
+        autoFocus
         value={content}
         inputAccessoryViewID={
           Platform.OS === "ios" ? DONE_ACCESSORY_ID : undefined
