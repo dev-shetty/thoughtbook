@@ -7,7 +7,6 @@ import { useRouter } from "expo-router"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Button } from "tamagui"
 
-
 export function NewThoughtButton() {
   const insets = useSafeAreaInsets()
   const router = useRouter()

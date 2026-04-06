@@ -9,7 +9,12 @@ interface NavbarButtonProps {
 
 export function NavbarButton({ icon, onPress }: NavbarButtonProps) {
   return (
-    <Button unstyled onPress={onPress} pressStyle={{ opacity: 0.65 }} hitSlop={12}>
+    <Button
+      unstyled
+      onPress={onPress}
+      pressStyle={{ opacity: 0.65 }}
+      hitSlop={12}
+    >
       <IconSymbol name={icon} size={20} color="white" />
     </Button>
   )

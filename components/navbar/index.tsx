@@ -1,13 +1,14 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Button, H1, XStack } from "tamagui"
 
+import {
+  NAVBAR_BOTTOM_SPACING,
+  NAVBAR_TOP_SPACING,
+} from "@/components/navbar/constants"
 import { useNavbar } from "@/components/navbar/hookes/use-navbar"
 import { $navbar } from "@/components/navbar/state"
 import { IconSymbol } from "@/components/ui/icon-symbol"
-import { NAVBAR_BOTTOM_SPACING, NAVBAR_TOP_SPACING } from "@/components/navbar/constants"
 import { observer } from "@legendapp/state/react"
-
-
 
 export const Navbar = observer(function Navbar() {
   const { top } = useSafeAreaInsets()
