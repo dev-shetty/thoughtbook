@@ -9,9 +9,11 @@ interface DateProps {
 
 export const Date = observer(function Date({ id }: DateProps) {
   const date = $state.thoughtsById[id].date.get()
+  const lastEditedAt = $state.thoughtsById[id].lastEditedAt.get()
   return (
     <Text fontFamily="$body" fontSize="$2" color="$colorSecondary">
       {formatDateTime(date)}
+      {lastEditedAt ? ` · Edited ${formatDateTime(lastEditedAt)}` : ""}
     </Text>
   )
 })

@@ -50,6 +50,7 @@ export default function RootLayout() {
         <SafeAreaProvider>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="thought/[id]" options={{ headerShown: false }} />
           </Stack>
           <StatusBar style="auto" />
         </SafeAreaProvider>

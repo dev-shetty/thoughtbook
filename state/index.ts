@@ -42,6 +42,16 @@ export function updateThoughtContent(id: string, text: string) {
     $state.thoughtsById[id].content.set(text)
 }
 
+export function markThoughtEdited(id: string) {
+    $state.thoughtsById[id].lastEditedAt.set(new Date().toISOString())
+}
+
+export function deleteThought(id: string) {
+    $state.thoughtsById[id].delete()
+    const index = $state.thoughtIds.peek().indexOf(id)
+    if (index !== -1) $state.thoughtIds.splice(index, 1)
+}
+
 export function getCurrentThought$() {
     const id = $state.currentId.peek()
     return $state.thoughtsById[id]

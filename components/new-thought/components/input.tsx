@@ -6,8 +6,14 @@ import { TextArea } from "tamagui"
 
 const DONE_ACCESSORY_ID = "new-thought-input-done"
 
-export const NewThoughtInput = observer(function NewThoughtInput() {
-  const currentId = $state.currentId.get()
+interface NewThoughtInputProps {
+  id?: string
+}
+
+export const NewThoughtInput = observer(function NewThoughtInput({
+  id,
+}: NewThoughtInputProps) {
+  const currentId = id ?? $state.currentId.get()
   const $thought = $state.thoughtsById[currentId]
   const content = $thought.content.get() ?? ""
 
