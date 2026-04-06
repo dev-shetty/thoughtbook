@@ -25,6 +25,8 @@ export const NewThoughtInput = observer(function NewThoughtInput({
         placeholder="Let your thoughts flow..."
         flex={1}
         fontSize="$4"
+        textAlignVertical="top"
+        borderWidth={0}
         autoFocus
         value={content}
         inputAccessoryViewID={
