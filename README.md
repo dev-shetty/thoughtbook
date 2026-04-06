@@ -8,14 +8,13 @@ Tackling a personal problem, Notion is an overkill for recording an instant, Twi
 
 <details>
   <summary>If you want a more formal why</summary>
-
+<br />
+  
 Most thoughts never make it out of your head. You either don't have someone to tell, or you're not comfortable sharing publicly. Over time, these pile up - ideas fade, frustrations linger, and experiences go unrecorded.
 
 Writing is one of the simplest ways to process what's on your mind. Thoughtbook gives you a space to do that without worrying about who's reading.
 
 </details>
-
-<br />
 
 Your thoughts are too precious to be lost in the void.
 
