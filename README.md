@@ -1,50 +1,71 @@
-# Welcome to your Expo app 👋
+# Thoughtbook
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A private, encrypted journal for your thoughts.
 
-## Get started
+## Why
 
-1. Install dependencies
+Tackling a personal problem, Notion is an overkill for recording an instant, Twitter (or X Now) is distracting and public, Notes app can get cluttered easily, you cant carry a physical book everywhere, basically needed a middle ground for me to write down my thoughts on the fly, or on the go.
 
-   ```bash
-   npm install
-   ```
+<details>
+  <summary>If you want a more formal why</summary>
 
-2. Start the app
+Most thoughts never make it out of your head. You either don't have someone to tell, or you're not comfortable sharing publicly. Over time, these pile up - ideas fade, frustrations linger, and experiences go unrecorded.
 
-   ```bash
-   npx expo start
-   ```
+Writing is one of the simplest ways to process what's on your mind. Thoughtbook gives you a space to do that without worrying about who's reading.
 
-In the output, you'll find options to open the app in a
+</details>
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+<br />
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Your thoughts are too precious to be lost in the void.
 
-## Get a fresh project
+## What it does
 
-When you're ready, run:
+Thoughtbook is a privacy-first journaling app where you are the only person who can read your entries. Everything is local :)
+
+- **End-to-end encrypted** — All data is encrypted locally on your device before it's ever persisted. Encryption keys are generated per-device and stored in the OS secure keychain (via `expo-secure-store`). The storage layer (MMKV) is encrypted at rest.
+- **Minimal by design** — Open the app, write a thought, done. No accounts, no social features, no feeds.
+- **Offline-first** — Everything runs and persists locally. No network calls required.
+
+## How the encryption works
+
+1. On first launch, a 256-bit random key is generated using `expo-crypto`.
+2. That key is stored in the device's secure keychain (`expo-secure-store`), accessible only when the device is unlocked.
+3. All thought data is persisted to MMKV storage using that key for encryption at rest.
+4. No plaintext ever leaves the device.
+
+For extra security, you can also use native Biometric authentication to unlock the app. Most phones provide application lock out of the box.
+
+## Planned
+
+- Categorize entries (travel ideas, bucket lists, wishlists) to find them later.
+- Semantic search across entries (local, on-device)
+- AI-assisted reflection — surface patterns, summarize periods, answer questions about your own journal
+- Self-hosting support — bring your own backend, own your data completely
+- Cross-device sync with E2EE
+
+## Tech stack
+
+- React Native (Expo SDK 54)
+- Expo Router for navigation
+- Tamagui for UI
+- Legend State for state management + persistence
+- MMKV for encrypted local storage
+- expo-crypto / expo-secure-store for key management
+
+## Getting started
 
 ```bash
-npm run reset-project
+# Install dependencies
+pnpm install
+
+# Run on iOS
+pnpm ios
+
+# Run on Android
+pnpm android
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## License
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+AGPLv3 — see [LICENSE](./LICENSE) for details.
