@@ -3,9 +3,9 @@ import { $navbar } from "@/components/navbar/state"
 import { NewThoughtInput } from "@/components/new-thought/components/input"
 import { ThoughtReadonly } from "@/components/thought/components/readonly"
 import { NavbarButton } from "@/components/ui/navbar-button"
-import { deleteThought, markThoughtEdited } from "@/state"
+import { $state, deleteThought, markThoughtEdited } from "@/state"
 import { useLocalSearchParams, useRouter } from "expo-router"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Alert, KeyboardAvoidingView, Platform } from "react-native"
 import { useKeyboardOffset } from "@/hooks/use-keyboard-offset"
 import { XStack, YStack } from "tamagui"
@@ -15,13 +15,33 @@ export default function ThoughtScreen() {
   const router = useRouter()
   const keyboardVerticalOffset = useKeyboardOffset()
   const [isEditing, setIsEditing] = useState(false)
+  const contentBeforeEdit = useRef("")
 
-  const handleEdit = useCallback(() => setIsEditing(true), [])
+  const markIfChanged = useCallback(() => {
+    const currentContent = $state.thoughtsById[id].content.peek() ?? ""
+    if (currentContent !== contentBeforeEdit.current) {
+      markThoughtEdited(id)
+    }
+  }, [id])
+
+  const handleEdit = useCallback(() => {
+    contentBeforeEdit.current = $state.thoughtsById[id].content.peek() ?? ""
+    setIsEditing(true)
+  }, [id])
 
   const handleSave = useCallback(() => {
-    markThoughtEdited(id)
+    markIfChanged()
     setIsEditing(false)
-  }, [id])
+  }, [markIfChanged])
+
+  // Mark edited when navigating away while still editing
+  useEffect(() => {
+    return () => {
+      if (contentBeforeEdit.current !== "") {
+        markIfChanged()
+      }
+    }
+  }, [markIfChanged])
 
   const handleDelete = useCallback(() => {
     Alert.alert(
