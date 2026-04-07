@@ -44,6 +44,17 @@ jobs:
 
       - run: pnpm install
 
+      - name: Sync version from tag
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          node -e "
+            const fs = require('fs');
+            const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
+            app.expo.version = '${VERSION}';
+            fs.writeFileSync('app.json', JSON.stringify(app, null, 2) + '\n');
+          "
+          echo "Building version: $VERSION"
+
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
 
       - name: Generate Release Notes
