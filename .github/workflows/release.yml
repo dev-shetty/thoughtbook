@@ -1,4 +1,4 @@
-name: Release APK
+name: Release
 
 on:
   push:
@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
 
@@ -20,17 +22,58 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
       - uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - run: pnpm install
 
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
+
+      - name: Generate Release Notes
+        run: |
+          PREV_TAG=$(git tag --sort=-creatordate | sed -n '2p')
+          CURRENT_TAG=${GITHUB_REF#refs/tags/}
+
+          if [ -z "$PREV_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"- %s (%an)" $CURRENT_TAG)
+          else
+            COMMITS=$(git log --pretty=format:"- %s (%an)" ${PREV_TAG}..${CURRENT_TAG})
+          fi
+
+          if [ -z "$PREV_TAG" ]; then
+            AUTHORS=$(git log --pretty=format:"%an" $CURRENT_TAG | sort -u | sed 's/^/@/' | paste -sd ", " -)
+          else
+            AUTHORS=$(git log --pretty=format:"%an" ${PREV_TAG}..${CURRENT_TAG} | sort -u | sed 's/^/@/' | paste -sd ", " -)
+          fi
+
+          {
+            echo "## What's Changed"
+            echo ""
+            echo "$COMMITS"
+            echo ""
+            echo "## Contributors"
+            echo "$AUTHORS"
+          } > release_notes.md
 
       - name: Upload APK to Release
         uses: softprops/action-gh-release@v2
         with:
           files: ./thoughtbook.apk
-          generate_release_notes: true
+          body_path: release_notes.md

@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.thoughtbook",
+      "bundleIdentifier": "com.devshetty.thoughtbook",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -24,7 +24,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.thoughtbook"
+      "package": "com.devshetty.thoughtbook"
     },
     "web": {
       "output": "static",
