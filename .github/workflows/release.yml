@@ -47,29 +47,45 @@ jobs:
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
 
       - name: Generate Release Notes
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           PREV_TAG=$(git tag --sort=-creatordate | sed -n '2p')
           CURRENT_TAG=${GITHUB_REF#refs/tags/}
 
           if [ -z "$PREV_TAG" ]; then
-            COMMITS=$(git log --pretty=format:"- %s (%an)" $CURRENT_TAG)
+            COMMITS_RAW=$(git log --pretty=format:"%H %s" $CURRENT_TAG)
           else
-            COMMITS=$(git log --pretty=format:"- %s (%an)" ${PREV_TAG}..${CURRENT_TAG})
+            COMMITS_RAW=$(git log --pretty=format:"%H %s" ${PREV_TAG}..${CURRENT_TAG})
           fi
 
-          if [ -z "$PREV_TAG" ]; then
-            AUTHORS=$(git log --pretty=format:"%an" $CURRENT_TAG | sort -u | sed 's/^/@/' | paste -sd ", " -)
-          else
-            AUTHORS=$(git log --pretty=format:"%an" ${PREV_TAG}..${CURRENT_TAG} | sort -u | sed 's/^/@/' | paste -sd ", " -)
-          fi
+          COMMITS=""
+          AUTHORS=""
+
+          while IFS= read -r line; do
+            SHA=$(echo "$line" | cut -d' ' -f1)
+            MSG=$(echo "$line" | cut -d' ' -f2-)
+
+            # Get GitHub username from commit SHA
+            USERNAME=$(gh api "repos/${{ github.repository }}/commits/${SHA}" --jq '.author.login' 2>/dev/null || echo "")
+
+            if [ -n "$USERNAME" ]; then
+              COMMITS="${COMMITS}\n- ${MSG} (@${USERNAME})"
+              AUTHORS="${AUTHORS}\n${USERNAME}"
+            else
+              COMMITS="${COMMITS}\n- ${MSG}"
+            fi
+          done <<< "$COMMITS_RAW"
+
+          UNIQUE_AUTHORS=$(echo -e "$AUTHORS" | sort -u | sed '/^$/d' | sed 's/^/@/' | paste -sd ", " -)
 
           {
             echo "## What's Changed"
             echo ""
-            echo "$COMMITS"
+            echo -e "$COMMITS"
             echo ""
             echo "## Contributors"
-            echo "$AUTHORS"
+            echo "$UNIQUE_AUTHORS"
           } > release_notes.md
 
       - name: Upload APK to Release
