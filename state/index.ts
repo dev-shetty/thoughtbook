@@ -1,6 +1,6 @@
 import { Reflection } from "@/components/reflections/types"
 import { getStorage } from "@/state/persist"
-import { observable } from "@legendapp/state"
+import { observable, when } from "@legendapp/state"
 import { syncObservable } from "@legendapp/state/sync"
 
 interface AppState {
@@ -19,8 +19,15 @@ let _synced = false
 export function initStateSync() {
     if (_synced) return
     _synced = true
-    syncObservable($state, {
+    const syncState = syncObservable($state, {
         persist: { name: "thoughtbook", plugin: getStorage() },
+    })
+    // Sort existing thoughts in reverse chronological order once after persist loads
+    when(() => syncState.isPersistLoaded.get(), () => {
+        const ids = $state.thoughtIds.peek()
+        if (ids.length > 1) {
+            $state.thoughtIds.set([...ids].sort((a, b) => Number(b) - Number(a)))
+        }
     })
 }
 
@@ -33,7 +40,7 @@ export function addThought(): string {
         content: "",
         badges: [],
     })
-    $state.thoughtIds.push(id)
+    $state.thoughtIds.unshift(id)
     $state.currentId.set(id)
     return id
 }
