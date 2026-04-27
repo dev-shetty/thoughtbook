@@ -20,8 +20,8 @@ export const Reflection = memo(function Reflection({ id }: ReflectionProps) {
   return (
     <Pressable onPress={handlePress}>
       <YStack gap="$2">
-        <Date id={id} />
         <Content id={id} />
+        <Date id={id} />
         <Badges id={id} />
       </YStack>
     </Pressable>
