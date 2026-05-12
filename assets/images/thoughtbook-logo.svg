@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 640" fill="none" stroke="#DED2BA" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Candle flame (teardrop) -->
+  <path d="M256 65
+           C232 108, 213 140, 213 168
+           C213 196, 232 212, 256 212
+           C280 212, 299 196, 299 168
+           C299 140, 280 108, 256 65Z"/>
+
+  <!-- Vertical stem / book spine -->
+  <path d="M256 212 L256 538"/>
+
+  <!-- Left book page -->
+  <path d="M256 295
+           C205 280, 148 288, 118 328
+           C92 362, 90 408, 108 445
+           C132 485, 188 522, 256 538"/>
+
+  <!-- Right book page -->
+  <path d="M256 295
+           C307 280, 362 288, 392 328
+           C416 362, 418 408, 400 445
+           C380 478, 345 502, 318 514"/>
+
+  <!-- Page curl (bottom-right) -->
+  <path d="M318 514
+           C300 522, 308 496, 335 472"/>
+</svg>
