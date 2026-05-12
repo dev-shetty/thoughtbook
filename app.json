@@ -13,7 +13,8 @@
       "bundleIdentifier": "com.devshetty.thoughtbook",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "autoIncrement": true
     },
     "android": {
       "adaptiveIcon": {

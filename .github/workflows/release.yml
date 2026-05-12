@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
@@ -61,8 +62,9 @@ jobs:
       - name: Commit version bump
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(bump): v${GITHUB_REF#refs/tags/v}"
+          commit_message: "chore(bump): ${{ github.ref_name }}"
           file_pattern: "app.json package.json"
+          branch: main
 
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
 
