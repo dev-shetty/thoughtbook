@@ -4,4 +4,5 @@ export interface Reflection {
     content: string
     badges: string[]
     lastEditedAt?: string
+    isFavourite?: boolean
 }

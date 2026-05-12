@@ -8,6 +8,7 @@ import { Stack } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import "react-native-reanimated"
 
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { useColorScheme } from "@/hooks/use-color-scheme"
 import { bootstrap } from "@/state/boostrap"
 import _config, { surfaceColor } from "@/tamagui.config"
@@ -43,18 +44,20 @@ export default function RootLayout() {
   if (error || !ready) return null
 
   return (
-    <ThemeProvider
-      value={colorScheme === "dark" ? navigationDarkTheme : DefaultTheme}
-    >
-      <TamaguiProvider config={config} defaultTheme="dark">
-        <SafeAreaProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="thought/[id]" options={{ headerShown: false }} />
-          </Stack>
-          <StatusBar style="auto" />
-        </SafeAreaProvider>
-      </TamaguiProvider>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider
+        value={colorScheme === "dark" ? navigationDarkTheme : DefaultTheme}
+      >
+        <TamaguiProvider config={config} defaultTheme="dark">
+          <SafeAreaProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="thought/[id]" options={{ headerShown: false }} />
+            </Stack>
+            <StatusBar style="auto" />
+          </SafeAreaProvider>
+        </TamaguiProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   )
 }

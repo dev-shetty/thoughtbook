@@ -65,6 +65,10 @@ const interFont = createFont({
 
 export const surfaceColor = "hsla(30, 11%, 6%, 1)"
 export const onSurfaceVariantColor = "hsla(34, 13%, 67%, 1)"
+export const inkHexColor = "#E2D5BC"
+export const swipeFavouriteColor = "hsla(40, 60%, 38%, 1)"
+export const swipeEditColor = "hsla(210, 45%, 35%, 1)"
+export const swipeDeleteColor = "hsla(13, 55%, 42%, 1)"
 
 const tokens = createTokens({
     color: {
@@ -115,6 +119,13 @@ const tokens = createTokens({
         tagText: "hsla(34, 13%, 67%, 1)",
         accent: "hsla(37, 33%, 89%, 1)",
         danger: "hsla(13, 81%, 66%, 1)",
+
+        // Swipe action backgrounds
+        swipeFavourite: swipeFavouriteColor,
+        swipeEdit: swipeEditColor,
+        swipeDelete: swipeDeleteColor,
+
+        inkHex: inkHexColor,
     },
 
     space: {

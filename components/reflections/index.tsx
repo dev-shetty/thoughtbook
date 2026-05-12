@@ -8,10 +8,9 @@ export function Reflections() {
     <YStack
       backgroundColor="$background"
       flex={1}
-      padding="$4"
       paddingTop="$6"
       paddingBottom="$8"
-      gap="$8"
+      gap="$2"
     >
       <For each={$state.thoughtIds}>
         {($id) => <Reflection id={$id.get() as string} />}

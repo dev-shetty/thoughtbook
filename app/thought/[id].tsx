@@ -11,11 +11,13 @@ import { useKeyboardOffset } from "@/hooks/use-keyboard-offset"
 import { XStack, YStack } from "tamagui"
 
 export default function ThoughtScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>()
+  const { id, edit } = useLocalSearchParams<{ id: string; edit?: string }>()
   const router = useRouter()
   const keyboardVerticalOffset = useKeyboardOffset()
-  const [isEditing, setIsEditing] = useState(false)
-  const contentBeforeEdit = useRef("")
+  const [isEditing, setIsEditing] = useState(edit === "true")
+  const contentBeforeEdit = useRef(
+    edit === "true" ? $state.thoughtsById[id].content.peek() ?? "" : "",
+  )
 
   const markIfChanged = useCallback(() => {
     const currentContent = $state.thoughtsById[id].content.peek() ?? ""

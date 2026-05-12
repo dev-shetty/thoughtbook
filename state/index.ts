@@ -53,6 +53,11 @@ export function markThoughtEdited(id: string) {
     $state.thoughtsById[id].lastEditedAt.set(new Date().toISOString())
 }
 
+export function toggleFavourite(id: string) {
+    const current = $state.thoughtsById[id].isFavourite.peek() ?? false
+    $state.thoughtsById[id].isFavourite.set(!current)
+}
+
 export function deleteThought(id: string) {
     $state.thoughtsById[id].delete()
     const index = $state.thoughtIds.peek().indexOf(id)
