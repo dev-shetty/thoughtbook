@@ -22,7 +22,7 @@ export const NewThoughtInput = observer(function NewThoughtInput({
       <CollapseKeyboard nativeID={DONE_ACCESSORY_ID} />
       <TextArea
         key={currentId}
-        placeholder="Let your thoughts flow..."
+        placeholder={"Let your thoughts flow...\n\n#tag to add labels"}
         flex={1}
         fontSize="$4"
         textAlignVertical="top"

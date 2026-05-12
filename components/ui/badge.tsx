@@ -2,8 +2,15 @@ import { Text, XStack } from "tamagui"
 
 export function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <XStack backgroundColor="$backgroundSoft" padding="$2" borderRadius="$2">
-      <Text>{children}</Text>
+    <XStack
+      backgroundColor="$backgroundStrong"
+      paddingHorizontal="$2"
+      paddingVertical="$1"
+      borderRadius="$1"
+    >
+      <Text fontFamily="$body" fontSize="$1" color="$colorSecondary">
+        {children}
+      </Text>
     </XStack>
   )
 }

@@ -19,7 +19,15 @@ export const Reflection = memo(function Reflection({ id }: ReflectionProps) {
 
   return (
     <Pressable onPress={handlePress}>
-      <YStack gap="$2">
+      <YStack
+        gap="$2"
+        paddingBottom="$6"
+        borderBottomWidth={1}
+        borderBottomColor="hsla(0, 0%, 0%, 0.9)"
+        shadowColor="hsla(34, 13%, 67%, 0.1)"
+        shadowOffset={{ width: 0, height: 1 }}
+        shadowRadius={0}
+      >
         <Content id={id} />
         <Date id={id} />
         <Badges id={id} />

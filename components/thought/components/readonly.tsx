@@ -1,6 +1,7 @@
 import { Badges } from "@/components/reflections/components/badges"
 import { $state } from "@/state"
 import { formatDateTime } from "@/utils"
+import { parseBadges } from "@/utils/badges"
 import { observer } from "@legendapp/state/react"
 import { ScrollView, Text } from "tamagui"
 
@@ -14,6 +15,7 @@ export const ThoughtReadonly = observer(function ThoughtReadonly({
   const content = $state.thoughtsById[id].content.get() ?? ""
   const date = $state.thoughtsById[id].date.get()
   const lastEditedAt = $state.thoughtsById[id].lastEditedAt.get()
+  const { displayContent } = parseBadges(content)
 
   return (
     <ScrollView
@@ -28,7 +30,7 @@ export const ThoughtReadonly = observer(function ThoughtReadonly({
         {lastEditedAt ? ` · Edited ${formatDateTime(lastEditedAt)}` : ""}
       </Text>
       <Text fontFamily="$body" fontSize="$4" color="$color">
-        {content}
+        {displayContent}
       </Text>
       <Badges id={id} />
     </ScrollView>
