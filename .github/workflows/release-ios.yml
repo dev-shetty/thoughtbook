@@ -40,8 +40,20 @@ jobs:
 
       - run: pnpm install
 
+      - name: Set iOS build number
+        run: |
+          node -e "
+            const fs = require('fs');
+            const app = JSON.parse(fs.readFileSync('app.json'));
+            app.expo.ios.buildNumber = '${{ github.run_number }}';
+            fs.writeFileSync('app.json', JSON.stringify(app, null, 2) + '\n');
+          "
+
       - name: Build iOS
         run: eas build --platform ios --profile ${{ inputs.profile }} --local --output ./thoughtbook.ipa
 
       - name: Submit to TestFlight
         run: eas submit --platform ios --path ./thoughtbook.ipa --profile production
+        env:
+          EXPO_APPLE_ID: ${{ secrets.EXPO_APPLE_ID }}
+          EXPO_APPLE_PASSWORD: ${{ secrets.EXPO_APPLE_PASSWORD }}

@@ -52,8 +52,17 @@ jobs:
             const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
             app.expo.version = '${VERSION}';
             fs.writeFileSync('app.json', JSON.stringify(app, null, 2) + '\n');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '${VERSION}';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
           echo "Building version: $VERSION"
+
+      - name: Commit version bump
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(bump): v${GITHUB_REF#refs/tags/v}"
+          file_pattern: "app.json package.json"
 
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
 
@@ -76,6 +85,11 @@ jobs:
           while IFS= read -r line; do
             SHA=$(echo "$line" | cut -d' ' -f1)
             MSG=$(echo "$line" | cut -d' ' -f2-)
+
+            # Skip version bump commits
+            if echo "$MSG" | grep -q "^chore(bump):"; then
+              continue
+            fi
 
             # Get GitHub username from commit SHA
             USERNAME=$(gh api "repos/${{ github.repository }}/commits/${SHA}" --jq '.author.login' 2>/dev/null || echo "")
