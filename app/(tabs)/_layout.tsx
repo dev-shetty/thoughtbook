@@ -4,13 +4,11 @@ import React from "react"
 import { HapticTab } from "@/components/haptic-tab"
 import { Navbar } from "@/components/navbar"
 import { NewThoughtButton } from "@/components/new-thought/components/fab"
-import { Colors } from "@/constants/theme"
-import { useColorScheme } from "@/hooks/use-color-scheme"
+import { TabIcon } from "@/components/ui/tab-icon"
+import { inactiveHexColor, inkHexColor, outlineVariantColor, surfaceColor } from "@/tamagui.config"
 import { YStack } from "tamagui"
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme()
-
   return (
     <YStack flex={1} backgroundColor="$background">
       <Navbar />
@@ -18,11 +16,15 @@ export default function TabLayout() {
       <YStack flex={1}>
         <Tabs
           screenOptions={{
-            tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
             headerShown: false,
             tabBarButton: HapticTab,
+            tabBarShowLabel: false,
+            tabBarActiveTintColor: inkHexColor,
+            tabBarInactiveTintColor: inactiveHexColor,
             tabBarStyle: {
-              display: "none",
+              backgroundColor: surfaceColor,
+              borderTopColor: outlineVariantColor,
+              borderTopWidth: 0.5,
             },
           }}
         >
@@ -30,7 +32,27 @@ export default function TabLayout() {
             name="index"
             options={{
               title: "Feed",
-              href: null,
+              tabBarIcon: ({ focused }) => (
+                <TabIcon name="house" focused={focused} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="favourites"
+            options={{
+              title: "Favourites",
+              tabBarIcon: ({ focused }) => (
+                <TabIcon name="star" focused={focused} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="calendar"
+            options={{
+              title: "Calendar",
+              tabBarIcon: ({ focused }) => (
+                <TabIcon name="calendar" focused={focused} />
+              ),
             }}
           />
           <Tabs.Screen
