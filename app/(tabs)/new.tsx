@@ -4,7 +4,7 @@ import { $state, deleteThought } from "@/state"
 import { useNavigation } from "expo-router"
 import { useEffect } from "react"
 import { KeyboardAvoidingView, Platform } from "react-native"
-import { YStack } from "tamagui"
+import { PageContent } from "@/components/ui/page-content"
 
 export default function NewScreen() {
   const keyboardVerticalOffset = useKeyboardOffset()
@@ -27,9 +27,9 @@ export default function NewScreen() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={keyboardVerticalOffset}
     >
-      <YStack flex={1}>
+      <PageContent>
         <NewThoughtInput />
-      </YStack>
+      </PageContent>
     </KeyboardAvoidingView>
   )
 }

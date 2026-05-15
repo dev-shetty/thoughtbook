@@ -8,6 +8,7 @@ import { useLocalSearchParams, useRouter } from "expo-router"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Alert, KeyboardAvoidingView, Platform } from "react-native"
 import { useKeyboardOffset } from "@/hooks/use-keyboard-offset"
+import { PageContent } from "@/components/ui/page-content"
 import { XStack, YStack } from "tamagui"
 
 export default function ThoughtScreen() {
@@ -86,7 +87,13 @@ export default function ThoughtScreen() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={keyboardVerticalOffset}
       >
-        {isEditing ? <NewThoughtInput id={id} /> : <ThoughtReadonly id={id} />}
+        {isEditing ? (
+          <PageContent>
+            <NewThoughtInput id={id} />
+          </PageContent>
+        ) : (
+          <ThoughtReadonly id={id} />
+        )}
       </KeyboardAvoidingView>
     </YStack>
   )

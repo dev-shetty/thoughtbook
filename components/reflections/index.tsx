@@ -1,20 +1,18 @@
 import { Reflection } from "@/components/reflections/reflection"
 import { $state } from "@/state"
 import { For } from "@legendapp/state/react"
-import { YStack } from "tamagui"
+import { PageContent } from "@/components/ui/page-content"
 
 export function Reflections() {
   return (
-    <YStack
+    <PageContent
       backgroundColor="$background"
-      flex={1}
-      paddingTop="$6"
       paddingBottom="$8"
       gap="$2"
     >
       <For each={$state.thoughtIds}>
         {($id) => <Reflection id={$id.get() as string} />}
       </For>
-    </YStack>
+    </PageContent>
   )
 }

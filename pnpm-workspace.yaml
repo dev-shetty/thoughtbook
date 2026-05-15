@@ -1,1 +1,5 @@
 nodeLinker: hoisted
+
+onlyBuiltDependencies: []
+
+minimumReleaseAge: 10080 # 7 days

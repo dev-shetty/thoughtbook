@@ -1,6 +1,7 @@
 import { Reflection } from "@/components/reflections/reflection"
 import { $state } from "@/state"
 import { useSelector } from "@legendapp/state/react"
+import { PageContent } from "@/components/ui/page-content"
 import { ScrollView, Text, YStack } from "tamagui"
 
 export default function FavouritesScreen() {
@@ -17,10 +18,8 @@ export default function FavouritesScreen() {
       backgroundColor="$background"
       contentContainerStyle={{ flexGrow: 1, backgroundColor: "transparent" }}
     >
-      <YStack
+      <PageContent
         backgroundColor="$background"
-        flex={1}
-        paddingTop="$6"
         paddingBottom="$8"
         gap="$2"
       >
@@ -36,7 +35,7 @@ export default function FavouritesScreen() {
         ) : (
           favouriteIds.map((id) => <Reflection key={id} id={id} />)
         )}
-      </YStack>
+      </PageContent>
     </ScrollView>
   )
 }

@@ -71,6 +71,7 @@ export const outlineVariantColor = "hsla(32, 8%, 28%, 1)"
 export const swipeFavouriteColor = "hsla(40, 60%, 38%, 1)"
 export const swipeEditColor = "hsla(210, 45%, 35%, 1)"
 export const swipeDeleteColor = "hsla(13, 55%, 42%, 1)"
+export const highlightColor = "hsla(38, 50%, 45%, 1)"
 
 const tokens = createTokens({
     color: {
@@ -128,6 +129,7 @@ const tokens = createTokens({
         swipeDelete: swipeDeleteColor,
 
         inkHex: inkHexColor,
+        highlight: highlightColor,
     },
 
     space: {
