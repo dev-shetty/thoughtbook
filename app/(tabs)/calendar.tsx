@@ -1,16 +1,16 @@
-import { Text, YStack } from "tamagui"
+import { CalendarHeatmap } from "@/components/calendar"
+import { ScrollView } from "tamagui"
 
 export default function CalendarScreen() {
   return (
-    <YStack
+    <ScrollView
       flex={1}
-      justifyContent="center"
-      alignItems="center"
       backgroundColor="$background"
+      bounces={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ flexGrow: 1 }}
     >
-      <Text color="$colorMuted" fontSize="$5" fontFamily="$body">
-        Coming soon
-      </Text>
-    </YStack>
+      <CalendarHeatmap />
+    </ScrollView>
   )
 }

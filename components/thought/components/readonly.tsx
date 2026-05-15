@@ -1,4 +1,5 @@
 import { Badges } from "@/components/reflections/components/badges"
+import { PAGE_TOP_PADDING } from "@/constants"
 import { $state } from "@/state"
 import { formatDateTime } from "@/utils"
 import { parseBadges } from "@/utils/badges"
@@ -21,7 +22,7 @@ export const ThoughtReadonly = observer(function ThoughtReadonly({
     <ScrollView
       flex={1}
       paddingHorizontal="$4"
-      paddingTop="$4"
+      paddingTop={PAGE_TOP_PADDING}
       paddingBottom="$8"
       contentContainerStyle={{ gap: 12 }}
     >

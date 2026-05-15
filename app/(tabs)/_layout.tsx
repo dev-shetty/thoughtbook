@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar"
 import { NewThoughtButton } from "@/components/new-thought/components/fab"
 import { TabIcon } from "@/components/ui/tab-icon"
 import { inactiveHexColor, inkHexColor, outlineVariantColor, surfaceColor } from "@/tamagui.config"
-import { YStack } from "tamagui"
+import { getTokens, YStack } from "tamagui"
 
 export default function TabLayout() {
   return (
@@ -25,6 +25,7 @@ export default function TabLayout() {
               backgroundColor: surfaceColor,
               borderTopColor: outlineVariantColor,
               borderTopWidth: 0.5,
+              paddingTop: getTokens().space["$2"].val,
             },
           }}
         >

@@ -1,3 +1,9 @@
+export function getDateKey(isoString: string): string {
+    const d = new Date(isoString)
+    // "2026-05-15T14:30:00.000Z" (ISO string) → "2026-05-15" (YYYY-MM-DD)
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+}
+
 export function formatDate(date: string) {
     return new Date(date).toLocaleDateString("en-US", {
         month: "long",
