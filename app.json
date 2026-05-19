@@ -42,8 +42,15 @@
           "backgroundColor": "#000000"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-updates"
     ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0de02668-bd4f-4db2-8618-9ce078269ff0"
+    },
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
