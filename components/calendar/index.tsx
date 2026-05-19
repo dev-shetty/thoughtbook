@@ -1,6 +1,7 @@
 import { $navbar } from "@/components/navbar/state"
 import { PageContent } from "@/components/ui/page-content"
 import { getDateKey } from "@/utils/formatters"
+import { useNavigation } from "@react-navigation/native"
 import { useCallback, useEffect, useState } from "react"
 import { Calendar } from "react-native-calendars"
 import { Button, Text, XStack, YStack } from "tamagui"
@@ -55,6 +56,19 @@ export function CalendarHeatmap() {
     setCurrentYear(today.getFullYear())
     setCurrentMonth(today.getMonth())
   }, [])
+
+  const navigation = useNavigation()
+
+  // clear "Today" button and reset calendar when leaving the tab
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("blur", () => {
+      $navbar.rightActions.set(null)
+      const today = new Date()
+      setCurrentYear(today.getFullYear())
+      setCurrentMonth(today.getMonth())
+    })
+    return unsubscribe
+  }, [navigation])
 
   useEffect(() => {
     if (!isCurrentMonth) {

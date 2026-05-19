@@ -20,6 +20,11 @@ export function useCalendarStats() {
         let streak = 0
         const current = new Date(today.getFullYear(), today.getMonth(), today.getDate())
 
+        // if today has no thoughts yet, maintain the streak till yesterday
+        if (!datesWithThoughts.has(getDateKey(current.toISOString()))) {
+            current.setDate(current.getDate() - 1)
+        }
+
         while (true) {
             const key = getDateKey(current.toISOString())
             if (datesWithThoughts.has(key)) {
