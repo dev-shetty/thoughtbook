@@ -42,6 +42,7 @@
           "backgroundColor": "#100f0d"
         }
       ],
+      "./plugins/withGradleJvmArgs.js",
       "expo-secure-store",
       "expo-updates"
     ],
