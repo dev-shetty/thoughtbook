@@ -25,6 +25,12 @@ Thoughtbook is a privacy-first journaling app where you are the only person who 
 - **End-to-end encrypted** — All data is encrypted locally on your device before it's ever persisted. Encryption keys are generated per-device and stored in the OS secure keychain (via `expo-secure-store`). The storage layer (MMKV) is encrypted at rest.
 - **Minimal by design** — Open the app, write a thought, done. No accounts, no social features, no feeds.
 - **Offline-first** — Everything runs and persists locally. No network calls required.
+- **Favorites** — Star the thoughts that matter most and find them in a dedicated tab.
+- **Tags** — Add `#hashtags` to your thoughts to categorize them (travel ideas, bucket lists, wishlists, etc.).
+- **Calendar heatmap** — See your writing history at a glance with a color-coded calendar showing how many thoughts you wrote each day.
+- **Streaks** — Track your consecutive days of journaling to build a writing habit.
+- **Swipe actions** — Swipe to favorite, edit, or delete thoughts without leaving the feed.
+- **Over-the-air updates** — Get the latest improvements without waiting for app store reviews.
 
 ## How the encryption works
 
@@ -37,7 +43,6 @@ For extra security, you can also use native Biometric authentication to unlock t
 
 ## Planned
 
-- Categorize entries (travel ideas, bucket lists, wishlists) to find them later.
 - Semantic search across entries (local, on-device)
 - AI-assisted reflection — surface patterns, summarize periods, answer questions about your own journal
 - Self-hosting support — bring your own backend, own your data completely
