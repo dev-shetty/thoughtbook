@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thoughtbook — A private, encrypted journal for your thoughts</title>
+    <meta
+      name="description"
+      content="Thoughtbook is a privacy-first journaling app. End-to-end encrypted, offline-first, minimal by design. Your thoughts stay yours."
+    />
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Thoughtbook — Your thoughts, encrypted."
+    />
+    <meta
+      property="og:description"
+      content="A private, encrypted journal. No accounts, no cloud, no compromise."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://thoughtbook.shetty.me/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Thoughtbook — Your thoughts, encrypted."
+    />
+    <meta
+      name="twitter:description"
+      content="A private, encrypted journal. No accounts, no cloud, no compromise."
+    />
+    <meta
+      name="twitter:image"
+      content="https://thoughtbook.shetty.me/og-image.png"
+    />
+
+    <!-- SEO -->
+    <meta
+      name="keywords"
+      content="journal, diary, encrypted journal, private journal, offline journal, journaling app, thought journal, privacy"
+    />
+    <meta name="author" content="Deveesh Shetty" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#100F0D" />
+    <link rel="canonical" href="https://thoughtbook.shetty.me" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --surface: #100f0d;
+        --surface-low: #161412;
+        --surface-container: #1c1a17;
+        --surface-high: #222019;
+        --surface-highest: #28251f;
+        --ink: #e2d5bc;
+        --ink-dim: hsla(37, 38%, 88%, 0.7);
+        --subtle: #b0a690;
+        --muted: #6f6962;
+        --gold: #ad8a39;
+        --gold-dim: hsla(38, 50%, 45%, 0.15);
+        --outline: hsla(32, 8%, 28%, 0.15);
+        --font-heading: "Newsreader", Georgia, serif;
+        --font-body: "Inter", -apple-system, sans-serif;
+      }
+
+      ::selection {
+        background: hsla(38, 50%, 45%, 0.4);
+        color: #fff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--surface);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: var(--gold);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── Layout ─────────────────────────────────── */
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+
+      /* ── Nav ────────────────────────────────────── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 16px 0;
+        background: hsla(30, 11%, 6%, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--outline);
+      }
+
+      nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-brand {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        color: var(--ink);
+        letter-spacing: -0.3px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      /* ── Hero ───────────────────────────────────── */
+      .hero {
+        padding: 180px 0 120px;
+        text-align: center;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 24px;
+      }
+
+      .hero h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(40px, 7vw, 72px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+        color: var(--ink);
+        max-width: 720px;
+        margin: 0 auto 24px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--subtle);
+        max-width: 520px;
+        margin: 0 auto 48px;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        font-family: var(--font-body);
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--surface);
+      }
+
+      .btn-primary:hover {
+        background: #c49b42;
+        text-decoration: none;
+        color: var(--surface);
+      }
+
+      .btn-secondary {
+        background: var(--surface-high);
+        color: var(--ink);
+        border: 1px solid var(--outline);
+      }
+
+      .btn-secondary:hover {
+        background: var(--surface-highest);
+        text-decoration: none;
+        color: var(--ink);
+      }
+
+      .btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ── Screenshots ───────────────────────────── */
+      .screenshots {
+        padding: 40px 0 100px;
+      }
+
+      .screenshots-layout {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .phone-single {
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+      .phone-single:hover {
+        transform: translateY(-12px);
+      }
+
+      .phone-fan {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 40px 0;
+      }
+
+      .phone-fan > div {
+        transition: transform 0.3s ease;
+      }
+
+      .phone-fan > div:hover {
+        transform: translateY(-12px);
+        z-index: 10;
+      }
+
+      .phone-fan > div:nth-child(1) {
+        z-index: 1;
+        transform: rotate(-6deg) translateX(24px);
+      }
+      .phone-fan > div:nth-child(1):hover {
+        transform: rotate(-6deg) translateX(24px) translateY(-12px);
+      }
+
+      .phone-fan > div:nth-child(2) {
+        z-index: 3;
+        transform: translateY(-16px);
+      }
+      .phone-fan > div:nth-child(2):hover {
+        transform: translateY(-28px);
+      }
+
+      .phone-fan > div:nth-child(3) {
+        z-index: 1;
+        transform: rotate(6deg) translateX(-24px);
+      }
+      .phone-fan > div:nth-child(3):hover {
+        transform: rotate(6deg) translateX(-24px) translateY(-12px);
+      }
+
+      .phone-frame {
+        width: 220px;
+        border-radius: 32px;
+        overflow: hidden;
+        border: 2px solid hsla(32, 30%, 40%, 0.6);
+        box-shadow: 0 24px 80px hsla(0, 0%, 0%, 0.5);
+      }
+
+      .phone-frame img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .phone-label {
+        display: none;
+      }
+
+      /* ── Why section ───────────────────────────── */
+      .why {
+        border-top: 1px solid var(--outline);
+      }
+
+      .why-header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      .section-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-family: var(--font-heading);
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 400;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+      }
+
+      .why-body {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      .why-body p {
+        font-size: 17px;
+        line-height: 1.8;
+        color: var(--subtle);
+        margin-bottom: 24px;
+      }
+
+      .why-body p:last-child {
+        color: var(--ink);
+        font-family: var(--font-heading);
+        font-style: italic;
+        font-size: 20px;
+      }
+
+      /* ── Features ───────────────────────────────── */
+      .features {
+        border-top: 1px solid var(--outline);
+      }
+
+      .features-header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .feature-card {
+        padding: 32px;
+        background: var(--surface-low);
+        border: 1px solid var(--outline);
+        border-radius: 8px;
+        transition: border-color 0.2s;
+      }
+
+      .feature-card:hover {
+        border-color: hsla(32, 8%, 28%, 0.4);
+      }
+
+      .feature-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--gold-dim);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .feature-card h3 {
+        font-family: var(--font-heading);
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 8px;
+      }
+
+      .feature-card p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      /* ── How it works (encryption) ──────────────── */
+      .encryption {
+        border-top: 1px solid var(--outline);
+      }
+
+      .encryption-header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      .steps {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .step {
+        display: flex;
+        gap: 24px;
+        position: relative;
+      }
+
+      .step-line {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .step-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--gold);
+        flex-shrink: 0;
+        margin-top: 6px;
+      }
+
+      .step-connector {
+        width: 1px;
+        flex: 1;
+        background: hsla(32, 8%, 28%, 0.4);
+      }
+
+      .step-content {
+        padding-bottom: 40px;
+      }
+
+      .step:last-child .step-content {
+        padding-bottom: 0;
+      }
+
+      .step:last-child .step-connector {
+        display: none;
+      }
+
+      .step-content h4 {
+        font-family: var(--font-heading);
+        font-size: 17px;
+        font-weight: 400;
+        margin-bottom: 4px;
+      }
+
+      .step-content p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ── Download / CTA ─────────────────────────── */
+      .download {
+        border-top: 1px solid var(--outline);
+        text-align: center;
+      }
+
+      .download-header {
+        margin-bottom: 48px;
+      }
+
+      .download-options {
+        display: flex;
+        gap: 48px;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .download-option {
+        flex: 1;
+        min-width: 280px;
+        max-width: 340px;
+        padding: 40px 32px;
+        background: var(--surface-low);
+        border: 1px solid var(--outline);
+        border-radius: 8px;
+      }
+
+      .download-option h3 {
+        font-family: var(--font-heading);
+        font-size: 22px;
+        font-weight: 400;
+        margin-bottom: 8px;
+      }
+
+      .download-option .platform-note {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 24px;
+        min-height: 2lh;
+      }
+
+      .email-form {
+        display: flex;
+        gap: 8px;
+      }
+
+      .email-form input {
+        flex: 1;
+        padding: 12px 16px;
+        background: var(--surface-container);
+        border: 1px solid var(--outline);
+        border-radius: 6px;
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .email-form input::placeholder {
+        color: var(--muted);
+      }
+
+      .email-form input:focus {
+        border-color: hsla(38, 50%, 45%, 0.4);
+      }
+
+      .email-form button {
+        padding: 12px 14px;
+        background: var(--gold);
+        color: var(--surface);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .email-form button:hover {
+        background: #c49b42;
+      }
+
+      /* ── Footer ─────────────────────────────────── */
+      footer {
+        padding: 40px 0;
+        border-top: 1px solid var(--outline);
+        text-align: center;
+      }
+
+      footer p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      footer a {
+        color: var(--subtle);
+      }
+
+      /* ── Responsive ─────────────────────────────── */
+      @media (max-width: 768px) {
+        section {
+          padding: 72px 0;
+        }
+        .hero {
+          padding: 140px 0 80px;
+        }
+
+        .feature-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .phone-frame {
+          width: 200px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .download-options {
+          gap: 24px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .phone-frame {
+          width: 120px;
+        }
+        .screenshots-layout {
+          flex-wrap: wrap;
+          gap: 24px;
+        }
+        .phone-fan > div:nth-child(1) {
+          transform: rotate(-4deg) translateX(16px);
+        }
+        .phone-fan > div:nth-child(2) {
+          transform: translateY(-10px);
+        }
+        .phone-fan > div:nth-child(3) {
+          transform: rotate(4deg) translateX(-16px);
+        }
+        .hero-cta {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Thoughtbook",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Android, iOS",
+        "description": "A private, encrypted journal that lives on your device. No accounts, no cloud, no compromise.",
+        "url": "https://thoughtbook.shetty.me",
+        "author": {
+          "@type": "Person",
+          "name": "Deveesh Shetty",
+          "url": "https://dev.shetty.me"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav>
+      <div class="container">
+        <span class="nav-brand">Thoughtbook</span>
+        <ul class="nav-links">
+          <li><a href="#why">Why</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#download">Get the app</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <span class="hero-tag">Private by default</span>
+        <h1>Your thoughts deserve a place to live</h1>
+        <p>
+          A private, encrypted journal that lives on your device. No accounts,
+          no cloud, no compromise. Just you and your thoughts.
+        </p>
+        <div class="hero-cta">
+          <a href="#download" class="btn btn-primary">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download
+          </a>
+          <a
+            href="https://github.com/devshetty/thoughtbook"
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              />
+            </svg>
+            Source code
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screenshots">
+      <div class="container">
+        <div class="screenshots-layout">
+          <div class="phone-single">
+            <div class="phone-frame">
+              <img
+                src="screenshots/splash.png"
+                alt="Thoughtbook splash screen"
+              />
+            </div>
+            <p class="phone-label">Splash</p>
+          </div>
+          <div class="phone-fan">
+            <div>
+              <div class="phone-frame">
+                <img src="screenshots/home.png" alt="Thoughtbook home screen" />
+              </div>
+              <p class="phone-label">Home</p>
+            </div>
+            <div>
+              <div class="phone-frame">
+                <img
+                  src="screenshots/new-thought.png"
+                  alt="Thoughtbook new thought screen"
+                />
+              </div>
+              <p class="phone-label">New Thought</p>
+            </div>
+            <div>
+              <div class="phone-frame">
+                <img
+                  src="screenshots/calendar.png"
+                  alt="Thoughtbook calendar heatmap"
+                />
+              </div>
+              <p class="phone-label">Calendar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section class="why" id="why">
+      <div class="container">
+        <div class="why-header">
+          <p class="section-label">Why Thoughtbook</p>
+          <h2 class="section-title">
+            Most thoughts never make it<br />out of your head
+          </h2>
+        </div>
+        <div class="why-body">
+          <p>
+            You either don't have someone to tell, or you're not comfortable
+            sharing publicly. Over time, ideas fade, frustrations linger, and
+            experiences go unrecorded.
+          </p>
+          <p>
+            Notion is overkill for capturing an instant. Twitter is distracting
+            and public. The Notes app gets cluttered. You can't carry a physical
+            journal everywhere. There was no middle ground for writing down a
+            thought on the fly.
+          </p>
+          <p>
+            So I built one. Writing is one of the simplest ways to process
+            what's on your mind. Thoughtbook gives you a space to do that
+            &mdash; without worrying about who's reading.
+          </p>
+          <p>Your thoughts are too precious to be lost in the void.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="features-header">
+          <p class="section-label">Features</p>
+          <h2 class="section-title">Minimal by design, powerful by nature</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <h3>End-to-end encrypted</h3>
+            <p>
+              256-bit encryption keys generated on your device, stored in the OS
+              secure keychain. No plaintext ever leaves your phone.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </div>
+            <h3>Minimal interface</h3>
+            <p>
+              Open the app, write a thought, done. No accounts, no social
+              features, no feeds. Just a blank page waiting for your words.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                <line x1="12" y1="20" x2="12.01" y2="20" />
+              </svg>
+            </div>
+            <h3>Offline-first</h3>
+            <p>
+              Everything runs and persists locally. No internet required, no
+              servers involved. Works anywhere, anytime.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <h3>Favorites</h3>
+            <p>
+              Star the thoughts that matter most and find them instantly in a
+              dedicated tab. Swipe to favorite from the feed.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <h3>Calendar heatmap</h3>
+            <p>
+              See your writing history at a glance. Color-coded days show how
+              many thoughts you wrote, plus streak tracking to build a habit.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="4" y1="9" x2="20" y2="9" />
+                <line x1="4" y1="15" x2="20" y2="15" />
+                <line x1="10" y1="3" x2="8" y2="21" />
+                <line x1="16" y1="3" x2="14" y2="21" />
+              </svg>
+            </div>
+            <h3>Tags</h3>
+            <p>
+              Categorize thoughts with #hashtags. Travel ideas, bucket lists,
+              wishlists &mdash; find them later when you need them.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section class="encryption" id="security">
+      <div class="container">
+        <div class="encryption-header">
+          <p class="section-label">Security</p>
+          <h2 class="section-title">Your data never leaves your device</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-line">
+              <div class="step-dot"></div>
+              <div class="step-connector"></div>
+            </div>
+            <div class="step-content">
+              <h4>Key generation</h4>
+              <p>
+                On first launch, a 256-bit random key is generated using the
+                device's cryptographic API.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-line">
+              <div class="step-dot"></div>
+              <div class="step-connector"></div>
+            </div>
+            <div class="step-content">
+              <h4>Secure storage</h4>
+              <p>
+                That key is stored in the OS secure keychain, accessible only
+                when the device is unlocked.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-line">
+              <div class="step-dot"></div>
+              <div class="step-connector"></div>
+            </div>
+            <div class="step-content">
+              <h4>Encrypted persistence</h4>
+              <p>
+                All thought data is encrypted at rest using MMKV storage. No
+                plaintext is ever written to disk.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-line">
+              <div class="step-dot"></div>
+              <div class="step-connector"></div>
+            </div>
+            <div class="step-content">
+              <h4>Biometric lock</h4>
+              <p>
+                Optionally protect the app with Face ID or fingerprint for an
+                additional layer of security.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="download" id="download">
+      <div class="container">
+        <div class="download-header">
+          <p class="section-label">Get Thoughtbook</p>
+          <h2 class="section-title">Start writing today</h2>
+        </div>
+        <div class="download-options">
+          <!-- Android -->
+          <div class="download-option">
+            <h3>Android</h3>
+            <p class="platform-note">
+              Download the latest release from GitHub.
+            </p>
+            <a
+              href="https://github.com/devshetty/thoughtbook/releases/latest"
+              class="btn btn-primary"
+              style="width: 100%; justify-content: center"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download APK
+            </a>
+          </div>
+
+          <!-- iOS -->
+          <div class="download-option">
+            <h3>iOS</h3>
+            <p class="platform-note">
+              Available on TestFlight. Drop your email for an invite.
+            </p>
+            <form
+              class="email-form"
+              action="#"
+              method="POST"
+              onsubmit="handleSubmit(event)"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+                aria-label="Email address"
+              />
+              <button type="submit" aria-label="Get TestFlight invite">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </form>
+            <p
+              id="form-success"
+              style="
+                display: none;
+                margin-top: 16px;
+                font-size: 14px;
+                color: var(--gold);
+              "
+            >
+              You're in. Check your email for the TestFlight invite.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          Thoughtbook is open source under
+          <a
+            href="https://github.com/devshetty/thoughtbook/blob/main/LICENSE"
+            target="_blank"
+            rel="noopener"
+            >AGPLv3</a
+          >. Built by
+          <a href="https://github.com/devshetty" target="_blank" rel="noopener"
+            >devshetty</a
+          >.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      async function handleSubmit(e) {
+        e.preventDefault()
+        const form = e.target
+        const btn = form.querySelector("button")
+        btn.textContent = "Sending..."
+        btn.disabled = true
+
+        try {
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+          })
+
+          if (res.ok) {
+            form.style.display = "none"
+            document.getElementById("form-success").style.display = "block"
+          } else {
+            btn.textContent = "Try again"
+            btn.disabled = false
+          }
+        } catch {
+          btn.textContent = "Try again"
+          btn.disabled = false
+        }
+      }
+    </script>
+  </body>
+</html>
