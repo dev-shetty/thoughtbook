@@ -1,0 +1,11 @@
+name = "thoughtbook-waitlist"
+main = "src/index.js"
+compatibility_date = "2025-05-01"
+
+[[kv_namespaces]]
+binding = "WAITLIST"
+id = "da5c092b0f5b4e34a551c3385ded27d7"
+
+[observability.logs]
+enabled = false
+invocation_logs = true

@@ -1068,12 +1068,7 @@
             <p class="platform-note">
               Available on TestFlight. Drop your email for an invite.
             </p>
-            <form
-              class="email-form"
-              action="#"
-              method="POST"
-              onsubmit="handleSubmit(event)"
-            >
+            <form class="email-form" id="waitlist-form">
               <input
                 type="email"
                 name="email"
@@ -1081,7 +1076,11 @@
                 required
                 aria-label="Email address"
               />
-              <button type="submit" aria-label="Get TestFlight invite">
+              <button
+                type="button"
+                id="waitlist-btn"
+                aria-label="Get TestFlight invite"
+              >
                 <svg
                   width="18"
                   height="18"
@@ -1098,16 +1097,14 @@
               </button>
             </form>
             <p
-              id="form-success"
+              id="form-message"
               style="
                 display: none;
                 margin-top: 16px;
                 font-size: 14px;
                 color: var(--gold);
               "
-            >
-              You're in. Check your email for the TestFlight invite.
-            </p>
+            ></p>
           </div>
         </div>
       </div>
@@ -1132,32 +1129,46 @@
     </footer>
 
     <script>
-      async function handleSubmit(e) {
-        e.preventDefault()
-        const form = e.target
-        const btn = form.querySelector("button")
-        btn.textContent = "Sending..."
-        btn.disabled = true
+      const WAITLIST_URL =
+        "https://thoughtbook-waitlist.deveeshshetty.workers.dev"
 
-        try {
-          const res = await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" },
-          })
+      document
+        .getElementById("waitlist-btn")
+        .addEventListener("click", async () => {
+          const form = document.getElementById("waitlist-form")
+          const input = form.querySelector("input")
+          const btn = document.getElementById("waitlist-btn")
+          const msg = document.getElementById("form-message")
 
-          if (res.ok) {
-            form.style.display = "none"
-            document.getElementById("form-success").style.display = "block"
-          } else {
+          if (!input.reportValidity()) return
+
+          btn.textContent = "Sending..."
+          btn.disabled = true
+          msg.style.display = "none"
+
+          try {
+            const res = await fetch(WAITLIST_URL, {
+              method: "POST",
+              body: new FormData(form),
+            })
+            const data = await res.json()
+
+            msg.textContent = data.message
+            msg.style.display = "block"
+
+            if (res.ok) {
+              form.style.display = "none"
+            } else {
+              btn.textContent = "Try again"
+              btn.disabled = false
+            }
+          } catch {
+            msg.textContent = "Something went wrong. Please try again."
+            msg.style.display = "block"
             btn.textContent = "Try again"
             btn.disabled = false
           }
-        } catch {
-          btn.textContent = "Try again"
-          btn.disabled = false
-        }
-      }
+        })
     </script>
   </body>
 </html>
