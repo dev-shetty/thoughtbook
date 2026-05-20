@@ -19,7 +19,8 @@
       "env": {
         "ORG_GRADLE_PROJECT_android.enableMinifyInReleaseBuilds": "true",
         "ORG_GRADLE_PROJECT_android.enableShrinkResourcesInReleaseBuilds": "true",
-        "ORG_GRADLE_PROJECT_android.enableBundleCompression": "true"
+        "ORG_GRADLE_PROJECT_android.enableBundleCompression": "true",
+        "GRADLE_OPTS": "-Xmx4096m -XX:MaxMetaspaceSize=1024m"
       }
     },
     "production": {

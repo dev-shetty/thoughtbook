@@ -67,6 +67,8 @@ jobs:
           branch: main
 
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
+        env:
+          GRADLE_OPTS: "-Xmx4096m -XX:MaxMetaspaceSize=1024m"
 
       - name: Generate Release Notes
         env:
