@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <title>Thoughtbook — A private, encrypted journal for your thoughts</title>
+    <title>Thoughtbook | A private, encrypted journal for your thoughts</title>
     <meta
       name="description"
       content="Thoughtbook is a privacy-first journaling app. End-to-end encrypted, offline-first, minimal by design. Your thoughts stay yours."
@@ -12,7 +12,7 @@
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Thoughtbook — Your thoughts, encrypted."
+      content="Thoughtbook. Your thoughts, encrypted."
     />
     <meta
       property="og:description"
@@ -30,7 +30,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Thoughtbook — Your thoughts, encrypted."
+      content="Thoughtbook. Your thoughts, encrypted."
     />
     <meta
       name="twitter:description"
@@ -607,6 +607,10 @@
         color: var(--subtle);
       }
 
+      .footer-links {
+        margin-top: 10px;
+      }
+
       /* ── Responsive ─────────────────────────────── */
       @media (max-width: 768px) {
         section {
@@ -807,7 +811,7 @@
           <p>
             So I built one. Writing is one of the simplest ways to process
             what's on your mind. Thoughtbook gives you a space to do that
-            &mdash; without worrying about who's reading.
+            without worrying about who's reading.
           </p>
           <p>Your thoughts are too precious to be lost in the void.</p>
         </div>
@@ -884,10 +888,11 @@
                 <line x1="12" y1="20" x2="12.01" y2="20" />
               </svg>
             </div>
-            <h3>Offline-first</h3>
+            <h3>Offline only</h3>
             <p>
-              Everything runs and persists locally. No internet required, no
-              servers involved. Works anywhere, anytime.
+              Everything runs and persists locally. There is no internet
+              connection to make and no server to talk to. Works anywhere,
+              anytime.
             </p>
           </div>
           <div class="feature-card">
@@ -958,7 +963,53 @@
             <h3>Tags</h3>
             <p>
               Categorize thoughts with #hashtags. Travel ideas, bucket lists,
-              wishlists &mdash; find them later when you need them.
+              wishlists, all findable later when you need them.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+            </div>
+            <h3>Encrypted backups</h3>
+            <p>
+              Export every thought into a single file locked with a password you
+              choose, then import it on another device. Nothing passes through a
+              server.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#AD8A39"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+            </div>
+            <h3>Open source</h3>
+            <p>
+              Every claim on this page is checkable. The full app is on GitHub
+              under GPLv3, encryption code included.
             </p>
           </div>
         </div>
@@ -1009,19 +1060,6 @@
               <p>
                 All thought data is encrypted at rest using MMKV storage. No
                 plaintext is ever written to disk.
-              </p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-line">
-              <div class="step-dot"></div>
-              <div class="step-connector"></div>
-            </div>
-            <div class="step-content">
-              <h4>Biometric lock</h4>
-              <p>
-                Optionally protect the app with Face ID or fingerprint for an
-                additional layer of security.
               </p>
             </div>
           </div>
@@ -1130,6 +1168,9 @@
           <a href="https://github.com/dev-shetty" target="_blank" rel="noopener"
             >devshetty</a
           >.
+        </p>
+        <p class="footer-links">
+          <a href="privacy.html">Privacy</a> · <a href="support.html">Support</a>
         </p>
       </div>
     </footer>

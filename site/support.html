@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Support | Thoughtbook</title>
+    <meta
+      name="description"
+      content="Get help with Thoughtbook: common questions, backups, and how to reach us."
+    />
+    <meta name="theme-color" content="#100F0D" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://thoughtbook.shetty.me/support.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --surface: #100f0d;
+        --surface-container: #1c1a17;
+        --ink: #e2d5bc;
+        --subtle: #b0a690;
+        --muted: #6f6962;
+        --gold: #ad8a39;
+        --outline: hsla(32, 8%, 28%, 0.15);
+        --font-heading: "Newsreader", Georgia, serif;
+        --font-body: "Inter", -apple-system, sans-serif;
+      }
+
+      ::selection {
+        background: hsla(38, 50%, 45%, 0.4);
+        color: #fff;
+      }
+
+      body {
+        background: var(--surface);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--gold);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      nav {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--outline);
+      }
+
+      nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-brand {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        color: var(--ink);
+        letter-spacing: -0.3px;
+      }
+
+      nav a {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 500;
+      }
+      nav a:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      main {
+        padding: 72px 0 120px;
+      }
+
+      h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(34px, 6vw, 52px);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -1.2px;
+        margin-bottom: 16px;
+      }
+
+      .lede {
+        color: var(--subtle);
+        font-size: 18px;
+        margin-bottom: 48px;
+      }
+
+      h2 {
+        font-family: var(--font-heading);
+        font-size: 26px;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+        margin: 48px 0 20px;
+      }
+
+      p,
+      li {
+        color: var(--subtle);
+        font-size: 16px;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .faq {
+        border-top: 1px solid var(--outline);
+        padding: 20px 0;
+      }
+
+      .faq h3 {
+        color: var(--ink);
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .contact {
+        background: var(--surface-container);
+        border: 1px solid var(--outline);
+        border-radius: 12px;
+        padding: 28px;
+        margin-top: 20px;
+      }
+
+      .contact p + p {
+        margin-top: 12px;
+      }
+
+      footer {
+        border-top: 1px solid var(--outline);
+        padding: 32px 0;
+      }
+
+      footer p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <a class="nav-brand" href="index.html">Thoughtbook</a>
+        <a href="index.html">← Back</a>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <h1>Support</h1>
+        <p class="lede">
+          Something broken, confusing, or missing? Write to us. A real person
+          reads every message.
+        </p>
+
+        <div class="contact">
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:dev@shetty.me"
+              >dev@shetty.me</a
+            >
+          </p>
+          <p>
+            <strong>Bugs and feature requests:</strong>
+            <a
+              href="https://github.com/dev-shetty/thoughtbook/issues"
+              target="_blank"
+              rel="noopener"
+              >GitHub Issues</a
+            >
+          </p>
+          <p>
+            Include your device model and the app version you're on and we'll
+            get to it faster.
+          </p>
+        </div>
+
+        <h2>Common questions</h2>
+
+        <div class="faq">
+          <h3>Where are my thoughts stored?</h3>
+          <p>
+            On your device only, encrypted with AES-256. There is no account and
+            no server, so nothing is uploaded anywhere.
+          </p>
+        </div>
+
+        <div class="faq">
+          <h3>How do I move my thoughts to a new phone?</h3>
+          <p>
+            Export an encrypted backup from the old device, choose a password,
+            save the file somewhere you can reach, then import it on the new
+            device with the same password.
+          </p>
+        </div>
+
+        <div class="faq">
+          <h3>I forgot my export password. Can you recover it?</h3>
+          <p>
+            No. The password never leaves your device and the file cannot be
+            decrypted without it. This is the trade-off that makes the encryption
+            meaningful.
+          </p>
+        </div>
+
+        <div class="faq">
+          <h3>I deleted the app. Are my thoughts gone?</h3>
+          <p>
+            Yes. Deleting the app removes both your thoughts and the encryption
+            key. Export a backup before deleting or resetting your device.
+          </p>
+        </div>
+
+        <div class="faq">
+          <h3>Is there a cloud sync?</h3>
+          <p>
+            Not today. Encrypted export and import is the way to move data
+            between devices.
+          </p>
+        </div>
+
+        <div class="faq">
+          <h3>Can I read the code?</h3>
+          <p>
+            Yes. Thoughtbook is open source under GPLv3 at
+            <a
+              href="https://github.com/dev-shetty/thoughtbook"
+              target="_blank"
+              rel="noopener"
+              >github.com/dev-shetty/thoughtbook</a
+            >.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          Thoughtbook · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

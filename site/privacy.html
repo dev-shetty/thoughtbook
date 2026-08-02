@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Privacy Policy | Thoughtbook</title>
+    <meta
+      name="description"
+      content="Thoughtbook's privacy policy. Your thoughts never leave your device."
+    />
+    <meta name="theme-color" content="#100F0D" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://thoughtbook.shetty.me/privacy.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --surface: #100f0d;
+        --surface-container: #1c1a17;
+        --ink: #e2d5bc;
+        --subtle: #b0a690;
+        --muted: #6f6962;
+        --gold: #ad8a39;
+        --outline: hsla(32, 8%, 28%, 0.15);
+        --font-heading: "Newsreader", Georgia, serif;
+        --font-body: "Inter", -apple-system, sans-serif;
+      }
+
+      ::selection {
+        background: hsla(38, 50%, 45%, 0.4);
+        color: #fff;
+      }
+
+      body {
+        background: var(--surface);
+        color: var(--ink);
+        font-family: var(--font-body);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--gold);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      nav {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--outline);
+      }
+
+      nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-brand {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        color: var(--ink);
+        letter-spacing: -0.3px;
+      }
+
+      nav a {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 500;
+      }
+      nav a:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      main {
+        padding: 72px 0 120px;
+      }
+
+      h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(34px, 6vw, 52px);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -1.2px;
+        margin-bottom: 12px;
+      }
+
+      .updated {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 48px;
+      }
+
+      h2 {
+        font-family: var(--font-heading);
+        font-size: 26px;
+        font-weight: 400;
+        letter-spacing: -0.5px;
+        margin: 48px 0 14px;
+      }
+
+      p,
+      li {
+        color: var(--subtle);
+        font-size: 16px;
+      }
+
+      p + p {
+        margin-top: 14px;
+      }
+
+      ul {
+        margin: 14px 0 0 20px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .intro {
+        color: var(--ink);
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      footer {
+        border-top: 1px solid var(--outline);
+        padding: 32px 0;
+      }
+
+      footer p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <a class="nav-brand" href="index.html">Thoughtbook</a>
+        <a href="index.html">← Back</a>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: 2 August 2026</p>
+
+        <p class="intro">
+          <strong
+            >Thoughtbook does not collect, transmit, or store any of your journal
+            content.</strong
+          >
+          Everything you write stays encrypted on your device. There is no
+          account, no server, and no sync.
+        </p>
+
+        <h2>What the app stores</h2>
+        <p>
+          Your thoughts, their timestamps, and any tags you add are stored
+          locally on your device. They are encrypted with AES-256, and the
+          encryption key is generated on your device and held in the iOS
+          Keychain (or the Android Keystore), never in the app's own storage.
+        </p>
+        <p>
+          Nobody but you can read this data. Not us, not Apple, and not anyone
+          who gets hold of the raw files without your device's key.
+        </p>
+
+        <h2>What the app sends</h2>
+        <p>
+          Nothing you write. The app contains no analytics, no advertising SDKs,
+          no crash-reporting that captures your content, and no tracking of any
+          kind.
+        </p>
+        <p>The app makes exactly one kind of network request:</p>
+        <ul>
+          <li>
+            <strong>Over-the-air updates.</strong> On launch, Thoughtbook checks
+            Expo's update service (expo.dev) to see whether a newer version of
+            the app code is available. This request includes technical
+            information such as your app version, platform, and device
+            identifiers required to serve the correct update. It never includes
+            your journal content.
+          </li>
+        </ul>
+
+        <h2>Export and backup files</h2>
+        <p>
+          When you export your thoughts, Thoughtbook produces an encrypted file
+          protected by a password you choose, and hands it to the iOS or Android
+          share sheet. Where that file goes is entirely your choice, whether
+          that's Files, iCloud Drive, email, or another app, and the file's
+          contents remain encrypted. We never receive it.
+        </p>
+        <p>
+          <strong>Keep your password.</strong> If you lose it, the export cannot
+          be recovered by us or anyone else.
+        </p>
+
+        <h2>Deleting your data</h2>
+        <p>
+          Deleting a thought removes it from your device. Deleting the app
+          removes all of your thoughts and the encryption key along with it.
+          Because nothing is stored on a server, there is nothing for us to
+          delete on your behalf, and no way for us to restore what is gone. Export
+          a backup first if you want to keep it.
+        </p>
+
+        <h2>This website</h2>
+        <p>
+          If you enter your email address to request a TestFlight invite, it is
+          used only to send you that invite. It is not sold, shared, or used for
+          marketing, and we will remove it if you ask. Page views are counted
+          anonymously with
+          <a href="https://umami.is" target="_blank" rel="noopener">Umami</a>,
+          which sets no cookies and does not track you across sites.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          If this policy changes, the date at the top of this page changes with
+          it. Material changes will be noted in the app's release notes.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Questions about privacy, or a request to remove your waitlist email:
+          <a href="mailto:dev@shetty.me">dev@shetty.me</a>.
+        </p>
+        <p>
+          Thoughtbook is open source. If you would rather verify all of this
+          than take our word for it, the code is at
+          <a
+            href="https://github.com/dev-shetty/thoughtbook"
+            target="_blank"
+            rel="noopener"
+            >github.com/dev-shetty/thoughtbook</a
+          >.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          Thoughtbook · <a href="index.html">Home</a> · <a href="support.html">Support</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
