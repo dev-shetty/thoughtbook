@@ -8,6 +8,7 @@ const SF_TO_MATERIAL_BOLD: IconMaterialMap = {
   house: "home-filled",
   star: "star",
   calendar: "event",
+  gear: "settings",
 }
 
 const SF_TO_MATERIAL: IconMaterialMap = {
@@ -20,6 +21,7 @@ const SF_TO_MATERIAL: IconMaterialMap = {
   house: "home",
   star: "star",
   calendar: "calendar-today",
+  gear: "settings",
 }
 
 export function IconSymbol({

@@ -4,6 +4,7 @@ export const NAVBAR_TITLES: Record<string, string> = {
     "/thought/[id]": "Thought",
     "/favourites": "Favourites",
     "/calendar": "Calendar",
+    "/settings": "Settings",
 } as const;
 
 
@@ -13,6 +14,7 @@ export const NAVBAR_SHOW_BACK: Record<string, boolean> = {
     "/thought/[id]": true,
     "/favourites": false,
     "/calendar": false,
+    "/settings": false,
 } as const;
 
 export const DEFAULT_NAVBAR_TITLE = "Thoughtbook";
