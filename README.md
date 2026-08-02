@@ -72,4 +72,4 @@ pnpm android
 
 ## License
 
-AGPLv3 — see [LICENSE](./LICENSE) for details.
+GPLv3 — see [LICENSE](./LICENSE) for details.

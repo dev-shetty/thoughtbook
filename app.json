@@ -12,7 +12,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.devshetty.thoughtbook",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": true
       },
       "autoIncrement": true
     },
