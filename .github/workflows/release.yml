@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref }}
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
@@ -45,26 +45,18 @@ jobs:
 
       - run: pnpm install
 
-      - name: Sync version from tag
+      - name: Verify version matches tag
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          node -e "
-            const fs = require('fs');
-            const app = JSON.parse(fs.readFileSync('app.json', 'utf8'));
-            app.expo.version = '${VERSION}';
-            fs.writeFileSync('app.json', JSON.stringify(app, null, 2) + '\n');
-            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-            pkg.version = '${VERSION}';
-            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
-          "
-          echo "Building version: $VERSION"
+          APP_VERSION=$(node -p "require('./app.json').expo.version")
+          PKG_VERSION=$(node -p "require('./package.json').version")
 
-      - name: Commit version bump
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore(bump): ${{ github.ref_name }}"
-          file_pattern: "app.json package.json"
-          branch: main
+          if [ "$APP_VERSION" != "$VERSION" ] || [ "$PKG_VERSION" != "$VERSION" ]; then
+            echo "Tag is $VERSION but app.json is $APP_VERSION and package.json is $PKG_VERSION."
+            echo "Cut releases with 'pnpm release <version>' so the tag matches the committed version."
+            exit 1
+          fi
+          echo "Building version: $VERSION"
 
       - run: eas build --platform android --profile preview --local --output ./thoughtbook.apk
         env:
@@ -91,7 +83,7 @@ jobs:
             MSG=$(echo "$line" | cut -d' ' -f2-)
 
             # Skip version bump commits
-            if echo "$MSG" | grep -q "^chore(bump):"; then
+            if echo "$MSG" | grep -qE "^chore\((bump|release)\):"; then
               continue
             fi
 
